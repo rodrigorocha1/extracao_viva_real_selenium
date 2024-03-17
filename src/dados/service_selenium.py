@@ -5,11 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.webdriver.remote.webelement import WebElement
+from typing import List, Tuple
 
 
 class WebScrapingSelenuium:
 
-    def __init__(self, url) -> None:
+    def __init__(self, url: str) -> None:
+
         self._url = url
         self._servico = Service(ChromeDriverManager().install())
 
@@ -20,7 +23,8 @@ class WebScrapingSelenuium:
             (By.XPATH, '//*[@id="cookie-notifier-cta"]'))).click()
         return navegador
 
-    def extrair_dados(self, navegador):
+    def extrair_dados(self, navegador) -> List[Tuple[WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement]]:
+
         lista_ids = navegador.find_elements(
             By.CLASS_NAME, 'property-card__content-link')
 
