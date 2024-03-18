@@ -16,11 +16,14 @@ class WebScrapingSelenuium:
         self._url = url
         self._servico = Service(ChromeDriverManager().install())
 
+    def __clicar_cookie(self, navegador):
+        WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="cookie-notifier-cta"]'))).click()
+
     def abrir_navegador(self):
         navegador = webdriver.Chrome(service=self._servico)
         navegador.get(self._url)
-        WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="cookie-notifier-cta"]'))).click()
+        self.__clicar_cookie(navegador)
         return navegador
 
     def extrair_dados(self, navegador) -> List[Tuple[WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement]]:
@@ -55,6 +58,7 @@ class WebScrapingSelenuium:
         try:
             navegador.find_element(
                 By.XPATH,  '//*[@id="js-site-main"]/div[2]/div[1]/section/div[2]/div[2]/div/ul/li[9]/button').click()
+            self.__clicar_cookie(navegador)
             return True
         except ElementClickInterceptedException:
             return False
