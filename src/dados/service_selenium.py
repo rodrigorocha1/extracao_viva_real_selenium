@@ -29,7 +29,7 @@ class WebScrapingSelenuium:
 
     def extrair_dados(self, navegador: WebDriver) -> List[Tuple[WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement]]:
 
-        lista_ids = navegador.find_elements(
+        urls = navegador.find_elements(
             By.CLASS_NAME, 'property-card__content-link')
 
         nome_apartamentos = navegador.find_elements(
