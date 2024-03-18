@@ -58,7 +58,6 @@ class WebScrapingSelenuium:
         try:
             navegador.find_element(
                 By.XPATH,  '//*[@id="js-site-main"]/div[2]/div[1]/section/div[2]/div[2]/div/ul/li[9]/button').click()
-            self.__clicar_cookie(navegador)
             return True
         except ElementClickInterceptedException:
             return False
