@@ -53,7 +53,7 @@ class WebScrapingSelenuium:
         garagem = navegador.find_elements(
             By.CLASS_NAME, 'js-property-detail-garages')
 
-        return zip(lista_ids, nome_apartamentos, precos, enderecos_apartamentos, metragem, quartos, banheiros, garagem)
+        return zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragem, quartos, banheiros, garagem)
 
     def executar_paginacao(self, navegador: WebDriver):
         try:
