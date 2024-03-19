@@ -12,10 +12,11 @@ from src.service.iservice_web_scraping import IServiceWebScraping
 
 class WebScrapingSelenuium(IServiceWebScraping):
 
-    def __init__(self, url: str) -> None:
+    def __init__(self, url: str, tipo_imovel: str) -> None:
 
         self._url = url
         self._servico = Service(ChromeDriverManager().install())
+        self._tipo_imovel = tipo_imovel
 
     def _clicar_cookie(self, navegador: WebDriver):
         WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
@@ -24,6 +25,7 @@ class WebScrapingSelenuium(IServiceWebScraping):
     def abrir_navegador(self) -> WebDriver:
         navegador = webdriver.Chrome(service=self._servico)
         navegador.get(self._url)
+        navegador.maximize_window()
         self._clicar_cookie(navegador)
         return navegador
 
@@ -55,6 +57,7 @@ class WebScrapingSelenuium(IServiceWebScraping):
 
         casas = [
             {
+                'tipo_imovel':  self._tipo_imovel,
                 'url': url.get_attribute('href'),
                 'nome': nome.text,
                 'preco': preco.text,

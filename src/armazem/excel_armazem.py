@@ -25,7 +25,7 @@ class ArmazemExcel(OperacaoArquivo):
     def salvar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         aba = self.__planilha.active
         aba.title = self.__nome_aba
-        print(type(aba))
+
         cabecalhos = self.__criar_cabecalho(dados=dados, aba=aba)
         for linha in dados:
 
@@ -40,7 +40,7 @@ class ArmazemExcel(OperacaoArquivo):
 
         flag_cabecalho = all(
             coluna.value is not None for coluna in planilha[1])
-        if flag_cabecalho:
+        if not flag_cabecalho:
             cabecalhos = self.__criar_cabecalho(dados=dados, aba=planilha)
             planilha.append(cabecalhos)
 
