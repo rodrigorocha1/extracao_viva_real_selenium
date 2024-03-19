@@ -10,8 +10,7 @@ class WebScrapingPipeline:
     def __init__(self, servico: IServiceWebScraping , armazem: OperacaoArquivo | Iarmazem ) -> None:
         self.__servico_scraping = servico
         self.__armazenar_dados = armazem
-        self.__armazenar_dados.verificar_arquivo()
-        self.__armazenar_dados.
+ 
     
 
     def run(self):
