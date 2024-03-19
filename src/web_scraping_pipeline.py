@@ -7,11 +7,9 @@ from time import sleep
 
 
 class WebScrapingPipeline:
-    def __init__(self, servico: IServiceWebScraping , armazem: OperacaoArquivo | Iarmazem ) -> None:
+    def __init__(self, servico: IServiceWebScraping, armazem: OperacaoArquivo | Iarmazem) -> None:
         self.__servico_scraping = servico
         self.__armazenar_dados = armazem
- 
-    
 
     def run(self):
         navegador = self.__servico_scraping.abrir_navegador()
@@ -40,6 +38,7 @@ if __name__ == "__main__":
         ),
         ArmazemExcel(
             nome_aba='casas',
-            nome_planilha='imovel_ribeirao_preto.xlsx'
-        ).
+            nome_arquivo='imovel_ribeirao_preto.xlsx'
+        )
     )
+    wsp.run()
