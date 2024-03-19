@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.remote.webelement import WebElement
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Union
 
 
 class WebScrapingSelenuium:
@@ -27,7 +27,7 @@ class WebScrapingSelenuium:
         self.__clicar_cookie(navegador)
         return navegador
 
-    def extrair_dados(self, navegador: WebDriver) -> List[Tuple[WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement, WebElement]]:
+    def extrair_dados(self, navegador: WebDriver) -> List[Dict[str, Union[str, int]]]:
 
         urls = navegador.find_elements(
             By.CLASS_NAME, 'property-card__content-link')
@@ -41,7 +41,7 @@ class WebScrapingSelenuium:
         enderecos_apartamentos = navegador.find_elements(
             By.CLASS_NAME, 'property-card__address')
 
-        metragem = navegador.find_elements(
+        metragems = navegador.find_elements(
             By.CLASS_NAME, 'js-property-card-detail-area')
 
         quartos = navegador.find_elements(
@@ -50,10 +50,24 @@ class WebScrapingSelenuium:
         banheiros = navegador.find_elements(
             By.CLASS_NAME, 'js-property-detail-bathroom')
 
-        garagem = navegador.find_elements(
+        garagens = navegador.find_elements(
             By.CLASS_NAME, 'js-property-detail-garages')
 
-        return zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragem, quartos, banheiros, garagem)
+        casas = [
+            {
+                'url': url.text,
+                'nome': nome.text,
+                'preco': preco.text,
+                'endereco': endereco.text,
+                'metragem': metragem.text,
+                'quarto': quarto.text,
+                'banheiro': banheiro.text,
+                'garagem': garagem.text
+            }
+            for url, nome,  preco, endereco, metragem, quarto, banheiro, garagem in zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragems, quartos, banheiros, garagens)
+        ]
+
+        return casas
 
     def executar_paginacao(self, navegador: WebDriver):
         try:
