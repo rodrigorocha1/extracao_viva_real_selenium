@@ -55,7 +55,7 @@ class WebScrapingSelenuium(IServiceWebScraping):
 
         casas = [
             {
-                'url': url.text,
+                'url': url.get_attribute('href'),
                 'nome': nome.text,
                 'preco': preco.text,
                 'endereco': endereco.text,

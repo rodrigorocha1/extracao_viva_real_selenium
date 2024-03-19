@@ -17,17 +17,23 @@ class WebScrapingPipeline:
 
         i = 1
         while flag_loop:
+            sleep(10)
             dados = self.__servico_scraping.extrair_dados(navegador=navegador)
-            if self.__armazenar_dados.verificar_arquivo():
-                self.__armazenar_dados.atualizar_dados(dados)
+            sleep(1)
+            if not self.__armazenar_dados.verificar_arquivo():
+                self.__armazenar_dados.salvar_dados(dados)
             else:
-                if i == 1:
-                    self.__armazenar_dados.salvar_dados(dados)
-                else:
-                    self.__armazenar_dados.atualizar_dados(dados)
+                self.__armazenar_dados.atualizar_dados(dados)
+
             sleep(20)
-            flag_loop = self.__servico_scraping.executar_paginacao()
+            flag_loop = self.__servico_scraping.executar_paginacao(
+                navegador=navegador
+            )
             i += 1
+            if i == 4:
+                print('FOI')
+                break
+
         self.__servico_scraping.fechar_navegador(navegador)
 
 
