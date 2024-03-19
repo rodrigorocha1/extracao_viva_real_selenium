@@ -36,7 +36,10 @@ class ArmazemExcel(OperacaoArquivo):
 
     def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         workbook = load_workbook(self._caminho_arquivo)
-        planilha = workbook[self.__nome_aba]
+        if self.__nome_aba in workbook.sheetnames:
+            planilha = workbook.create_sheet(self.__nome_aba)
+        else:
+            planilha = workbook[self.__nome_aba]
 
         flag_cabecalho = all(
             coluna.value is not None for coluna in planilha[1])

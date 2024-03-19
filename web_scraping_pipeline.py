@@ -40,11 +40,11 @@ class WebScrapingPipeline:
 if __name__ == "__main__":
     wsp = WebScrapingPipeline(
         WebScrapingSelenuium(
-            tipo_imovel='apartamento',
-            url='https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,',
+            tipo_imovel='casa',
+            url='https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,',
         ),
         ArmazemExcel(
-            nome_aba='Apartamento',
+            nome_aba='Casas',
             nome_arquivo='imovel_ribeirao_preto.xlsx'
         )
     )
