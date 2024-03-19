@@ -9,5 +9,5 @@ class Iarmazem(ABC):
         pass
 
     @abstractmethod
-    def atualizar_dados(self):
+    def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         pass
