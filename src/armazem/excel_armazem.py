@@ -3,20 +3,18 @@ import sys
 import os
 from typing import List, Dict, Union
 from openpyxl import Workbook, load_workbook
-from src.armazem.iarmazem import Iarmazem
 
+from src.armazem.operacoes_arquivo import OperacaoArquivo
 
 sys.path.insert(0, os.path.abspath(os.curdir))
 
 
-class ArmazemExcel(Iarmazem):
+class ArmazemExcel(OperacaoArquivo):
 
-    def __init__(self, nome_aba: str, nome_planilha: str) -> None:
-        self.__caminho_base = os.getcwd()
-        self.__caminho_planilha = os.path.join(
-            self.__caminho_base, 'data', 'raw', nome_planilha)
+    def __init__(self, nome_arquivo: str, nome_aba: str) -> None:
         self.__planilha = Workbook()
         self.__nome_aba = nome_aba
+        super().__init__(nome_arquivo)
 
     def salvar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         aba = self.__planilha.active
@@ -26,11 +24,11 @@ class ArmazemExcel(Iarmazem):
         for linha in dados:
             valores = [linha(coluna) for coluna in cabecalhos]
         aba.append(valores)
-        self.__planilha.save(self.__caminho_planilha)
+        self.__planilha.save(self._caminho_arquivo)
         self.__planilha.close()
 
     def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
-        workbook = load_workbook(self.__caminho_planilha)
+        workbook = load_workbook(self._caminho_arquivo)
         planilha = workbook['teste']
         ultima_lina = planilha.max_row + 1
         for linha, valor in enumerate(dados, start=ultima_lina):
@@ -40,7 +38,4 @@ class ArmazemExcel(Iarmazem):
         workbook.close()
 
     def verificar_arquivo(self):
-        return os.path.exists(self.__caminho_planilha)
-
-    # def verificar_arquivo(self):
-    #     return os.path.exists(self.__caminho_planilha)
+        return os.path.exists(self._caminho_arquivo)
