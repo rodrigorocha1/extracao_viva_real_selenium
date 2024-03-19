@@ -1,7 +1,6 @@
-from src.armazem.iarmazem import Iarmazem
-from openpyxl import Workbook, load_workbook
 import os
 from abc import abstractmethod
+from src.armazem.iarmazem import Iarmazem
 
 
 class OperacaoArquivo(Iarmazem):
