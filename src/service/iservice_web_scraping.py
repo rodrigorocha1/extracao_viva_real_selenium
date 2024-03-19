@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from typing import List, Tuple, Dict, Union
 
 
-class IServiceWebScraping:
+class IServiceWebScraping(ABC):
 
     @abstractmethod
     def abrir_navegador(self) -> WebDriver:
@@ -19,4 +19,8 @@ class IServiceWebScraping:
 
     @abstractmethod
     def _clicar_cookie(self, navegador: WebDriver):
+        pass
+
+    @abstractmethod
+    def fechar_navegador(self, navegador: WebDriver):
         pass
