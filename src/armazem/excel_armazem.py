@@ -27,6 +27,7 @@ class ArmazemExcel(Iarmazem):
             valores = [linha(coluna) for coluna in cabecalhos]
         aba.append(valores)
         self.__planilha.save(self.__caminho_planilha)
+        self.__planilha.close()
 
     def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         workbook = load_workbook(self.__caminho_planilha)
@@ -37,3 +38,9 @@ class ArmazemExcel(Iarmazem):
             planilha.append(list(valor.values()))
         workbook.save("teste.xlsx")
         workbook.close()
+
+    def verificar_arquivo(self):
+        return os.path.exists(self.__caminho_planilha)
+
+    # def verificar_arquivo(self):
+    #     return os.path.exists(self.__caminho_planilha)

@@ -6,23 +6,28 @@ from time import sleep
 
 
 class WebScrapingPipeline:
-    def __init__(self, servico: IServiceWebScraping, armazem: Iarmazem) -> None:
+    def __init__(self, servico: IServiceWebScraping, armazem: Iarmazem ) -> None:
         self.__servico_scraping = servico
         self.__armazenar_dados = armazem
+        self.__armazenar_dados.verificar_arquivo()
+    
 
     def run(self):
         navegador = self.__servico_scraping.abrir_navegador()
         flag_loop = True
-        flag_armazem = True
+
         i = 1
         while flag_loop:
             dados = self.__servico_scraping.extrair_dados(navegador=navegador)
-            if flag_armazem:
+            # Checar se o arquivo existe antes de criar a segunda aba
+            if self.__armazenar_dados.verificar_arquivo
+            if i == 1:
                 self.__armazenar_dados.salvar_dados(dados)
             else:
                 self.__armazenar_dados.atualizar_dados(dados)
             sleep(20)
             flag_loop = self.__servico_scraping.executar_paginacao()
+
             i += 1
 
 
