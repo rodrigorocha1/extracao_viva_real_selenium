@@ -36,20 +36,20 @@ class ArmazemExcel(OperacaoArquivo):
 
     def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         workbook = load_workbook(self._caminho_arquivo)
-        if self.__nome_aba in workbook.sheetnames:
+        if self.__nome_aba not in workbook.sheetnames:
             planilha = workbook.create_sheet(self.__nome_aba)
+            cabecalhos = self.__criar_cabecalho(dados=dados, aba=planilha)
+            for linha in dados:
+                valores = [linha[coluna] for coluna in cabecalhos]
+                planilha.append(valores)
         else:
             planilha = workbook[self.__nome_aba]
+            ultima_lina = planilha.max_row + 1
+            for _, valor in enumerate(dados, start=ultima_lina):
+                planilha.append(list(valor.values()))
 
-        flag_cabecalho = all(
-            coluna.value is not None for coluna in planilha[1])
-        if not flag_cabecalho:
-            cabecalhos = self.__criar_cabecalho(dados=dados, aba=planilha)
-            planilha.append(cabecalhos)
+            ultima_lina = planilha.max_row
 
-        ultima_lina = planilha.max_row + 1
-        for _, valor in enumerate(dados, start=ultima_lina):
-            planilha.append(list(valor.values()))
         workbook.save(self._caminho_arquivo)
         workbook.close()
 
