@@ -8,9 +8,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
 from src.service.iservice_web_scraping import IServiceWebScraping
+from datetime import datetime
 
 
 class WebScrapingSelenuium(IServiceWebScraping):
+    data_extacao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     def __init__(self, url: str, tipo_imovel: str) -> None:
 
@@ -65,7 +67,8 @@ class WebScrapingSelenuium(IServiceWebScraping):
                 'metragem': metragem.text,
                 'quarto': quarto.text,
                 'banheiro': banheiro.text,
-                'garagem': garagem.text
+                'garagem': garagem.text,
+                'data_extracao': self.data_extacao
             }
             for url, nome,  preco, endereco, metragem, quarto, banheiro, garagem in zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragems, quartos, banheiros, garagens)
         ]

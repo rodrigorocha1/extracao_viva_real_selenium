@@ -41,7 +41,7 @@ if __name__ == "__main__":
     wsp = WebScrapingPipeline(
         WebScrapingSelenuium(
             tipo_imovel='casa Condomínio',
-            url='https://www.vivareal.com.br/venda/sp/ribeirao-preto/condominio_residencial/#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,',
+            url='https://www.vivareal.com.br/venda/para/belem/apartamento_residencial/#onde=,Par%C3%A1,Bel%C3%A9m,,,,,city,BR%3EPara%3ENULL%3EBelem,,,',
         ),
         ArmazemExcel(
             nome_aba='Casa Condomínio',
