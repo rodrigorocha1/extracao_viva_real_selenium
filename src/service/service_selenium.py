@@ -10,6 +10,12 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from src.service.iservice_web_scraping import IServiceWebScraping
 from datetime import datetime
 
+import logging
+from time import sleep
+logging.getLogger("example")
+logging.basicConfig(format="%(levelname)s | %(asctime)s | %(message)s",
+                    level=logging.INFO, filename='test.log', datefmt="%Y-%m-%dT%H:%M:%SZ",)
+
 
 class WebScrapingSelenuium(IServiceWebScraping):
     data_extacao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -82,6 +88,8 @@ class WebScrapingSelenuium(IServiceWebScraping):
             return True
         except ElementClickInterceptedException:
             return False
+        except Exception as e:
+            logging.critical(f"A critical message {e}")
 
     def fechar_navegador(self, navegador: WebDriver):
         navegador.quit()

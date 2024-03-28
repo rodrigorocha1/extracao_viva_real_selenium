@@ -15,9 +15,9 @@ class WebScrapingPipeline:
         navegador = self.__servico_scraping.abrir_navegador()
         flag_loop = True
 
-        i = 1
+        # i = 1
         while flag_loop:
-            sleep(10)
+            sleep(20)
             dados = self.__servico_scraping.extrair_dados(navegador=navegador)
             sleep(1)
             if not self.__armazenar_dados.verificar_arquivo():
@@ -29,10 +29,10 @@ class WebScrapingPipeline:
             flag_loop = self.__servico_scraping.executar_paginacao(
                 navegador=navegador
             )
-            i += 1
-            if i == 3:
-                print('FOI')
-                break
+            # i += 1
+            # if i == 3:
+            #     print('FOI')
+            #     break
 
         self.__servico_scraping.fechar_navegador(navegador)
 
@@ -40,11 +40,11 @@ class WebScrapingPipeline:
 if __name__ == "__main__":
     wsp = WebScrapingPipeline(
         WebScrapingSelenuium(
-            tipo_imovel='casa Condomínio',
-            url='https://www.vivareal.com.br/venda/para/belem/apartamento_residencial/#onde=,Par%C3%A1,Bel%C3%A9m,,,,,city,BR%3EPara%3ENULL%3EBelem,,,',
+            tipo_imovel='Casa',
+            url='https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/?pagina=173#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,',
         ),
         ArmazemExcel(
-            nome_aba='Casa Condomínio',
+            nome_aba='Casa',
             nome_arquivo='imovel_ribeirao_preto.xlsx'
         )
     )
