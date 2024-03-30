@@ -1,0 +1,9 @@
+- Total de casas
+	- Total de casas por tipo e bairro
+
+- Distribuição de Preços
+	- por tipo
+	- Por Bairro
+	- Por tipo filtrando bairro
+- Distribuição de Preços por área, garagem e banheiro
+- Análise outlierer
