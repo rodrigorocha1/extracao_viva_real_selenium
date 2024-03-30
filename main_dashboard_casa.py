@@ -10,10 +10,18 @@ st.title('Análise dos preços dos Imóveis do Múnicipio de Ribeirão Preto')
 
 
 with st.container():
+    tipo_imovel = st.radio(
+        'Escolha o típo de imóvel   ',
+        ['Apartamento', 'Casa'],
+        horizontal=True
+    )
+
+
+with st.container():
     coluna_um, coluna_dois, coluna_tres = st.columns(3)
     with coluna_um:
         st.write('Gráfico 1 metro mais caro por bairro')
     with coluna_dois:
         st.write('Gráfico 2 Análise da faixa de preços por bairro')
     with coluna_tres:
-        st.write('Gráfico 3')
+        st.write('Gráfico 3 - total de imovel por bairro')

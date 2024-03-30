@@ -1,11 +1,16 @@
-
-
 [data-testid="stMarkdownContainer"] {
     text-align: center;
-
 }
 
 
+[data-testid="stWidgetLabel"]  {
+    font-size: 20px;
+}
+
+
+[data-testid="stWidgetLabel"] > p {
+    font-size: 30px;
+}
 
 
 [data-testid="stMetric"] {
@@ -13,6 +18,7 @@
     text-align: center;
     padding: 15px 0;
 }
+
 [data-testid="stMetricLabel"] {
   display: flex;
   justify-content: center;
@@ -22,10 +28,37 @@
 [data-testid="stMetricDeltaIcon-Up"] {
     position: relative;
     left: 38%;
- 
 }
+
 [data-testid="stMetricDeltaIcon-Down"] {
     position: relative;
     left: 38%;
-
 }
+
+
+[data-testid="stRadio"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+div.row-widget.stRadio > div {
+    flex-direction: row;
+    align-items: stretch;
+}
+   
+div.row-widget.stRadio > div[role="radiogroup"] > label[data-baseweb="radio"]  {
+
+    padding-right: 10px;
+    padding-left: 4px;
+    padding-bottom: 3px;
+    margin: 4px;
+}
+
+
+div[class*="stRadio"] > label > div[data-testid="stMarkdownContainer"] > p {
+    font-size: 25px;
+}
+
+
