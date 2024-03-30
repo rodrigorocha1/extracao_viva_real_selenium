@@ -1,0 +1,31 @@
+
+
+[data-testid="stMarkdownContainer"] {
+    text-align: center;
+
+}
+
+
+
+
+[data-testid="stMetric"] {
+    background-color: #393939;
+    text-align: center;
+    padding: 15px 0;
+}
+[data-testid="stMetricLabel"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+[data-testid="stMetricDeltaIcon-Up"] {
+    position: relative;
+    left: 38%;
+ 
+}
+[data-testid="stMetricDeltaIcon-Down"] {
+    position: relative;
+    left: 38%;
+
+}
