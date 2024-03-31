@@ -104,7 +104,7 @@ class Visualizacao:
                 ay=y_annot,
                 showarrow=False,
                 font=dict(
-                    size=14
+                    size=18
                 )
             )
 
