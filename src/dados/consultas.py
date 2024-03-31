@@ -5,6 +5,7 @@ from typing import List
 
 class Consulta:
     def __init__(self, colunas: List[str], tipo_imovel: str) -> None:
+
         self.__caminho_base = os.getcwd()
         self.__colunas = colunas
         self.__tipo_imovel = tipo_imovel
@@ -19,5 +20,14 @@ class Consulta:
         dataframe = self.__dataframe.groupby('bairro_teste') \
             .agg(
             preco_por_metro_bairro=('preco_por_metro', 'max')
-        ).reset_index().sort_values(by='preco_por_metro_bairro', ascending=False)
-        return dataframe
+        ).reset_index()
+        dataframe['preco_por_metro_bairro'] = dataframe['preco_por_metro_bairro'].round(
+            2)
+
+        return dataframe.nlargest(10, columns=['preco_por_metro_bairro']).sort_values(by='preco_por_metro_bairro', ascending=True)
+
+
+if __name__ == "__main__":
+    colunas = ['bairro_teste', 'preco_por_metro']
+    tipo_apartamento = 'Apartamento'
+    consulta = Consulta(colunas=colunas, tipo_imovel=tipo_apartamento)

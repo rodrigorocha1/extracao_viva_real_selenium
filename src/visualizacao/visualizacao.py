@@ -91,8 +91,6 @@ class Visualizacao:
         )
         if text_anotation is not None:
             margem = 0.1
-
-# Ajuste a coordenada y da anotação para evitar sobreposição com as barras
             y_annot = (height) + margem
             fig.add_annotation(
                 text=text_anotation,

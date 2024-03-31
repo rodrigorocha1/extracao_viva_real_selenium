@@ -1,4 +1,5 @@
 import streamlit as st
+from src.dados.consultas import Consulta
 
 
 with open("src/estilos/styles.css", "r") as f:
@@ -24,7 +25,8 @@ with st.container(border=True):
 with st.container():
     coluna_um, coluna_dois, coluna_tres = st.columns(3)
     with coluna_um:
-        st.write('Gráfico 1 metro mais caro por bairro')
+       
+
     with coluna_dois:
         st.write('Gráfico 2 Análise da faixa de preços por bairro')
     with coluna_tres:
