@@ -1,0 +1,5 @@
+1- Introdução
+2- Traça perfil das amostras
+3 - Discursão dos testes
+	3.1 - Teste de normalidade
+	3.2 - Teste de Hipóteses
