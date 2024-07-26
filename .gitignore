@@ -11,3 +11,4 @@ __pycache__
 .idea
 .kdev4
 extracao_viva_real_selenium.kdev4
+.venv/
